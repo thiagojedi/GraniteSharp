@@ -9,8 +9,4 @@
       <ProjectReference Include="..\Granite\Granite.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="GraniteDemo..cs" />
-    </ItemGroup>
-
 </Project>
