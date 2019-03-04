@@ -52,12 +52,14 @@ namespace Granite.Widgets
         {
             // Title label
             _buttonTitle = new Label {Halign = Align.Start, Valign = Align.End};
+            _buttonTitle.StyleContext.AddClass(StyleClass.H3Label);
 
             // Description label
             _buttonDescription = new Label
             {
                 Halign = Align.Start, Valign = Align.Start, LineWrap = true, LineWrapMode = WrapMode.Word
             };
+            _buttonDescription.StyleContext.AddClass("dim-label");
 
             // Button contents wrapper
             _buttonGrid = new Grid {ColumnSpacing = 12};
@@ -66,10 +68,7 @@ namespace Granite.Widgets
             _buttonGrid.Attach(_buttonDescription, 1, 1, 1, 1);
             Add(_buttonGrid);
             
-            // FIXME Set style
-//            button_title.StyleContext.AddClass(Granite.STYLE_CLASS_H3_LABEL);
-//            button_description.StyleContext.AddClass(Gtk.STYLE_CLASS_DIM_LABEL);
-//            StyleContext.AddClass(Gtk.STYLE_CLASS_FLAT);
+            StyleContext.AddClass("flat");
         }
     }
 }

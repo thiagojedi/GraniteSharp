@@ -141,7 +141,7 @@ namespace Granite.Widgets
          */
         public int Append(string iconName, string optionText, string descriptionText)
         {
-            var image = new Image(iconName, IconSize.Dialog);
+            var image = Image.NewFromIconName(iconName, IconSize.Dialog);
             image.UseFallback = true;
             return Append(image, optionText, descriptionText);
         }

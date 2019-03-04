@@ -16,13 +16,13 @@ namespace Demo.Views
             };
 
             welcome.Append(
-                "text-plain",
+                "text-x-vala",
                 "Visit Valadoc",
                 "The canonical source for Vala API references."
             );
             welcome.Append(
-                "text-plain",
-                "Get GraniteSharp Source",
+                "text-x-vala",
+                "Get Granite Source",
                 "Granite's source code is hosted on GitHub."
             );
 
