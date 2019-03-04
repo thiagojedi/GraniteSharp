@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Granite\Granite.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="GraniteDemo..cs" />
+    </ItemGroup>
+
+</Project>
