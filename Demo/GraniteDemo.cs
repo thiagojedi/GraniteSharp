@@ -15,14 +15,14 @@ namespace Demo
         {
             base.OnActivated();
 
-            var window = new Window(WindowType.Toplevel);
-
             var toastView = new ToastView();
             var welcome = new WelcomeView();
+            var alertView = new AlertViewView();
 
             var mainStack = new Stack();
-            mainStack.AddTitled(welcome, "welcome", "Welcome");
-            mainStack.AddTitled(toastView, "toasts", "Toast");
+            mainStack.AddTitled(welcome, nameof(welcome), "Welcome");
+            mainStack.AddTitled(alertView, nameof(alertView), "AlertView");
+            mainStack.AddTitled(toastView, nameof(toastView), "Toast");
 
             var stackSidebar = new StackSidebar {Stack = mainStack};
 
@@ -33,11 +33,10 @@ namespace Demo
             var headerBar = new HeaderBar {ShowCloseButton = true};
             headerBar.StyleContext.AddClass("default-decoration");
 
+            var window = new Window(WindowType.Toplevel) {Title = "Granite Demo", Titlebar = headerBar};
             window.Add(paned);
             window.SetDefaultSize(900, 600);
             window.SetSizeRequest(750, 500);
-            window.Titlebar = headerBar;
-            window.Title = "Granite Demo";
             window.ShowAll();
 
             AddWindow(window);
