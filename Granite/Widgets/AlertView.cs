@@ -70,7 +70,7 @@ namespace Granite.Widgets
             IconName = iconName;
         }
 
-        private AlertView()
+        public AlertView()
         {
             //            StyleContext.AddClass(Gtk.STYLE_CLASS_VIEW);
             _titleLabel = new Label

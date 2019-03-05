@@ -37,8 +37,13 @@ namespace Granite.Widgets
         /**
          * Creates a new Toast with #title as its title
          */
-        public Toast (string title) {
-         
+        public Toast(string title) : this()
+        {
+            Title = title;
+        }
+
+        public Toast()
+        {
             Margin = 3;
             Halign = Align.Center;
             Valign = Align.Start;
@@ -67,7 +72,7 @@ namespace Granite.Widgets
                 Closed?.Invoke(this,null);
             };
 
-            _notificationLabel = new Label (title);
+            _notificationLabel = new Label ();
 
             var notificationBox = new Grid {ColumnSpacing = 12};
             notificationBox.Add (closeButton);

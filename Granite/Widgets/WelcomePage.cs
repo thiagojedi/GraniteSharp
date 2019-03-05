@@ -28,27 +28,33 @@ namespace Granite.Widgets
          * @param title_text main title for new Welcome Page
          * @param subtitle_text subtitle text for new Welcome Page
          */
+        public Welcome(string titleText, string subtitleText) : this()
+        {
+            Title = titleText;
+            Subtitle = subtitleText;
+        }
+        
         public Welcome()
         {
 //        get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-//        get_style_context ().add_class (Granite.STYLE_CLASS_WELCOME);
+            StyleContext.AddClass(StyleClass.Welcome);
 
-            _titleLabel = new Label(null)
+            _titleLabel = new Label
             {
                 Justify = Justification.Center,
                 Hexpand = true
             };
-            //        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
+            _titleLabel.StyleContext.AddClass (StyleClass.H1Label);
 
-            _subtitleLabel = new Label(null)
+            _subtitleLabel = new Label
             {
                 Justify = Justification.Center, Hexpand = true, Wrap = true, LineWrapMode = WrapMode.Word
             };
 
-//        var subtitle_label_context = subtitle_label.get_style_context ();
-//        subtitle_label_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-//        subtitle_label_context.add_class (Granite.STYLE_CLASS_H2_LABEL);
-
+            var subtitleLabelContext = _subtitleLabel.StyleContext;
+            subtitleLabelContext.AddClass(StyleClass.H2Label);
+            subtitleLabelContext.AddClass("dim-label");
+            
             Options = new Grid
             {
                 Orientation = Orientation.Vertical,
@@ -194,7 +200,6 @@ namespace Granite.Widgets
          *
          * @param index index of action item to be returned
          * @return welcome button at //index//, or //null// if //index// is invalid.
-         * @since 0.3
          */
         public WelcomeButton get_button_from_index(int index)
         {
