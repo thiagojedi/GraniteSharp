@@ -4,24 +4,36 @@ namespace Granite.Widgets
 {
     public abstract class SettingsPage : ScrolledWindow
     {
-        protected string _iconName;
-        protected string _title;
+        private string _iconName;
+        private string _title;
+        private SettingsStatusType _statusType;
+        private string _status;
 
         /**
      * Used to display a status icon overlayed on the display_widget in a Granite.SettingsSidebar
      */
-        public enum SettingsStatusType {
+        public enum SettingsStatusType
+        {
             ERROR,
             OFFLINE,
             SUCCESS,
             WARNING,
             NONE
         }
-        
+
         /**
      * Selects a colored icon to be displayed in a Granite.SettingsSidebar
      */
-        public SettingsStatusType StatusType { get; set; } = SettingsStatusType.NONE;
+        [GLib.Property(nameof(StatusType))]
+        public SettingsStatusType StatusType
+        {
+            get => _statusType;
+            set
+            {
+                _statusType = value;
+                Notify(nameof(StatusType));
+            }
+        }
 
         /**
          * A widget to display in place of an icon in a Granite.SettingsSidebar
@@ -36,22 +48,43 @@ namespace Granite.Widgets
         /**
          * A status string to be displayed underneath the title in a Granite.SettingsSidebar
          */
-        public string Status { get; protected set; }
+        [GLib.Property(nameof(Status))]
+        public string Status
+        {
+            get => _status;
+            protected set
+            {
+                _status = value;
+                Notify(nameof(Status));
+            }
+        }
 
         /**
          * An icon name to be displayed in a Granite.SettingsSidebar
          */
-        public string IconName {
+        [GLib.Property(nameof(IconName))]
+        public string IconName
+        {
             get => _iconName;
-            protected set => _iconName = value;
+            set
+            {
+                _iconName = value;
+                Notify(nameof(IconName));
+            }
         }
 
         /**
          * A title to be displayed in a Granite.SettingsSidebar
          */
-        public string Title {
+        [GLib.Property(nameof(Title))]
+        public string Title
+        {
             get => _title;
-            protected set => _title = value;
+            set
+            {
+                _title = value;
+                Notify(nameof(Title));
+            }
         }
     }
 }

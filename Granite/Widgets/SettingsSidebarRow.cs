@@ -34,7 +34,7 @@ namespace Granite.Widgets
 
         public Widget DisplayWidget { get; }
 
-        public string Header { get; set; }
+        public new string Header { get; set; }
 
         public SettingsPage Page { get; }
 
@@ -111,17 +111,17 @@ namespace Granite.Widgets
             Add(grid);
 
             Header = Page.Header;
-//            page.bind_property ("icon-name", this, "icon-name", BindingFlags.DEFAULT);
-//            page.bind_property ("status", this, "status", BindingFlags.DEFAULT);
-//            page.bind_property ("status-type", this, "status-type", BindingFlags.DEFAULT);
-//            page.bind_property ("title", this, "title", BindingFlags.DEFAULT);
+            Page.AddNotification(nameof(StatusType), (o, e) => StatusType = Page.StatusType);
+            Page.AddNotification(nameof(Status), (o, e) => Status = Page.Status);
+            Page.AddNotification(nameof(Title), (o, e) => Title = Page.Title);
+            Page.AddNotification(nameof(IconName), (o, e) => IconName = Page.IconName);
 
             if (Page.Status != null)
             {
                 Status = Page.Status;
             }
 
-            if (Page.StatusType != Widgets.SettingsPage.SettingsStatusType.NONE)
+            if (Page.StatusType != SettingsPage.SettingsStatusType.NONE)
             {
                 StatusType = Page.StatusType;
             }

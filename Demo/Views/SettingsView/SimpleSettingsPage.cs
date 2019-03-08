@@ -12,17 +12,17 @@ namespace Demo.Views.SettingsView
         {
             Header = "Simple Pages";
 
-            var iconLabel = new Label("Icon Name:") {Xalign = 1};
+            var iconLabel = new Label("Icon Name:") { Xalign = 1 };
 
-            var iconEntry = new Entry {Hexpand = true, PlaceholderText = "This page's icon name", Text = IconName};
+            var iconEntry = new Entry { Hexpand = true, PlaceholderText = "This page's icon name", Text = IconName };
 
-            var titleLabel = new Label("Title:") {Xalign = 1};
+            var titleLabel = new Label("Title:") { Xalign = 1 };
 
-            var titleEntry = new Entry {Hexpand = true, PlaceholderText = "This page's title"};
+            var titleEntry = new Entry { Hexpand = true, PlaceholderText = "This page's title" };
 
-            var descriptionLabel = new Label("Description:") {Xalign = 1};
+            var descriptionLabel = new Label("Description:") { Xalign = 1 };
 
-            var descriptionEntry = new Entry {Hexpand = true, PlaceholderText = "This page's description"};
+            var descriptionEntry = new Entry { Hexpand = true, PlaceholderText = "This page's description" };
 
             ContentArea.Attach(iconLabel, 0, 0, 1, 1);
             ContentArea.Attach(iconEntry, 1, 0, 1, 1);
@@ -39,8 +39,7 @@ namespace Demo.Views.SettingsView
 
             iconEntry.Changed += (sender, args) => { IconName = iconEntry.Text; };
 
-            StatusSwitch.StateSet += (o, args) => { UpdateStatus(); };
-            StatusSwitch.Activate += (sender, args) => { UpdateStatus(); };
+            StatusSwitch.AddNotification("active", (o, args) => UpdateStatus());
 
             titleEntry.Changed += (sender, args) => { Title = titleEntry.Text; };
 

@@ -38,56 +38,25 @@ namespace Granite.Widgets
             get => _description;
             set
             {
-                if (_descriptionLabel != null) 
+                if (_descriptionLabel != null)
                     _descriptionLabel.Text = value;
 
                 _description = value;
             }
         }
-
-        /**
-         * An icon name associated with #this
-         * Deprecated: Use #SettingsPage.icon_name instead.
-         */
-        public new string IconName
-        {
-            get => _iconName;
-            set
-            {
-                if (_headerIcon != null) 
-                    _headerIcon.IconName = value;
-                _iconName = value;
-            }
-        }
-
-        /**
-         * A title associated with #this
-         * Deprecated: Use #SettingsPage.title instead.
-         */
-        public new string Title
-        {
-            get => _title;
-            set
-            {
-                if (_titleLabel != null)
-                    _titleLabel.Text = value;
-
-                _title = value;
-            }
-        }
-
+        
         protected SimpleSettingsPage(string title, string description, string iconName, bool activatable = false)
         {
             Title = title;
             IconName = iconName;
             Description = description;
             Activatable = activatable;
-            
-            _headerIcon = Image.NewFromIconName(_iconName, IconSize.Dialog);
+
+            _headerIcon = Image.NewFromIconName(IconName, IconSize.Dialog);
             _headerIcon.PixelSize = 48;
             _headerIcon.Valign = Align.Start;
 
-            _titleLabel = new Label(_title) {Ellipsize = EllipsizeMode.End, Xalign = 0};
+            _titleLabel = new Label(Title) {Ellipsize = EllipsizeMode.End, Xalign = 0};
             _titleLabel.StyleContext.AddClass("h2");
 
             var headerArea = new Grid {ColumnSpacing = 12, RowSpacing = 3};
@@ -128,21 +97,17 @@ namespace Granite.Widgets
             ActionArea.Added += (o, e) => SetActionAreaVisibility();
             ActionArea.Removed += (o, e) => SetActionAreaVisibility();
 
-//            notify["icon-name"].connect(() =>
-//            {
-//                if (header_icon != null)
-//                {
-//                    header_icon.icon_name = icon_name;
-//                }
-//            });
-//
-//            notify["title"].connect(() =>
-//            {
-//                if (title_label != null)
-//                {
-//                    title_label.label = title;
-//                }
-//            });
+            AddNotification(nameof(IconName), (o, e) =>
+            {
+                if (_headerIcon != null)
+                    _headerIcon.IconName = IconName;
+            });
+
+            AddNotification(nameof(Title), (o, e) =>
+            {
+                if (_titleLabel != null)
+                    _titleLabel.Text = Title;
+            });
         }
 
         private void SetActionAreaVisibility()
