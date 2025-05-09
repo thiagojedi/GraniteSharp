@@ -20,11 +20,13 @@ namespace Demo
             var welcome = new WelcomeView();
             var alertView = new AlertViewView();
             var settingsView = new SettingsView();
+            var hypertextView = new HyperTextViewGrid();
 
             var mainStack = new Stack();
             mainStack.AddTitled(welcome, nameof(welcome), "Welcome");
             mainStack.AddTitled(alertView, nameof(alertView), "AlertView");
-            mainStack.AddTitled(settingsView, nameof(settingsView), "SettingsView");
+            mainStack.AddTitled(hypertextView, nameof(hypertextView), "HyperTextView");
+            mainStack.AddTitled(settingsView, nameof(settingsView), "SettingsSidebar");
             mainStack.AddTitled(toastView, nameof(toastView), "Toast");
 
             var stackSidebar = new StackSidebar {Stack = mainStack};
