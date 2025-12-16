@@ -1,0 +1,38 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
+{
+  "name": "GraniteSharp",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "runArgs": [
+    "--security-opt=label=disable",
+    "--userns=keep-id",
+    "--device=/dev/dri",
+    "-e XDG_RUNTIME_DIR=/tmp",
+    "-e WAYLAND_DISPLAY=${env:WAYLAND_DISPLAY}"
+  ],
+  "containerEnv": {
+    "XDG_RUNTIME_DIR": "/tmp",
+    "WAYLAND_DISPLAY": "${env:WAYLAND_DISPLAY}"
+  },
+  "mounts": [
+    {
+      "source": "${env:XDG_RUNTIME_DIR}/${env:WAYLAND_DISPLAY}",
+      "target": "/tmp/${env:WAYLAND_DISPLAY}",
+      "type": "bind"
+    }
+  ],
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "dotnet restore",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ]
+    }
+  }
+}
