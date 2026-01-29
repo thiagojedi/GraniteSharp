@@ -1,39 +1,38 @@
 using Granite.Widgets;
 using Gtk;
 
-namespace Demo.Views
+namespace Demo.Views;
+
+public class ToastView: Overlay
 {
-    public class ToastView: Overlay
+    public ToastView()
     {
-        public ToastView()
+        var toast = new Toast ("Button was pressed!");
+        toast.SetDefaultAction("Do Things");
+
+        var button = new Button {Label = "Press Me"};
+
+        var grid = new Grid
         {
-            var toast = new Toast ("Button was pressed!");
-            toast.SetDefaultAction("Do Things");
+            Orientation = Orientation.Vertical,
+            Margin = 24,
+            Halign = Align.Center,
+            Valign = Align.Center,
+            RowSpacing = 6
+        };
+        grid.Add (button);
 
-            var button = new Button {Label = "Press Me"};
+        AddOverlay (grid);
+        AddOverlay (toast);
 
-            var grid = new Grid
-            {
-                Orientation = Orientation.Vertical,
-                Margin = 24,
-                Halign = Align.Center,
-                Valign = Align.Center,
-                RowSpacing = 6
-            };
-            grid.Add (button);
+        button.Clicked += (sender, args) => toast.SendNotification();
 
-            AddOverlay (grid);
-            AddOverlay (toast);
-
-            button.Clicked += (sender, args) => toast.SendNotification();
-
-            toast.DefaultAction += (sender, args) => {
-                var label = new Label ("Did The Thing");
-                toast.Title = "Already did the thing";
-                toast.SetDefaultAction(null);
-                grid.Add (label);
-                grid.ShowAll();
-            };
-        }
+        toast.DefaultAction += (sender, args) => {
+            var label = new Label ("Did The Thing");
+            toast.Title = "Already did the thing";
+            toast.SetDefaultAction(null);
+            grid.Add (label);
+            grid.ShowAll();
+        };
     }
 }
