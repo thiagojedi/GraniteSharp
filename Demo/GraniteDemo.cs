@@ -21,13 +21,17 @@ namespace Demo
             var alertView = new AlertViewView();
             var settingsView = new SettingsView();
             var hypertextView = new HyperTextViewGrid();
-
+            var dateTimeView = new DateTimePickerView();
+            
+            
             var mainStack = new Stack();
             mainStack.AddTitled(welcome, nameof(welcome), "Welcome");
             mainStack.AddTitled(alertView, nameof(alertView), "AlertView");
+            mainStack.AddTitled(dateTimeView, nameof(dateTimeView), "Date & Time");
             mainStack.AddTitled(hypertextView, nameof(hypertextView), "HyperTextView");
             mainStack.AddTitled(settingsView, nameof(settingsView), "SettingsSidebar");
             mainStack.AddTitled(toastView, nameof(toastView), "Toast");
+            
 
             var stackSidebar = new StackSidebar {Stack = mainStack};
 
